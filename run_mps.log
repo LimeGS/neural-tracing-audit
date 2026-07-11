@@ -1,5 +1,5 @@
 [driver] argv: ['--tifxyz-path', '$WORK/work/seed_segment', '--volume-path', 'https://dl.ash2txt.org/full-scrolls/Scroll3/PHerc332.volpkg/volumes_zarr_standardized/53keV_7.91um_Scroll3.zarr', '--checkpoint-path', '$WORK/ckpt/copy_displacement_latest.pth', '--device', 'mps', '--volume-scale', '0', '--crop-size', '128', '128', '128', '--batch-size', '1', '--crop-input-workers', '1', '--bbox-band-workers', '1', '--no-tta', '--out-dir', '$WORK/work/out_mps', '--verbose']
-loading checkpoint $WORK/ckpt/copy_displacement_latest.pth... 
+loading checkpoint $WORK/ckpt/copy_displacement_latest.pth...
 model_config is empty; using default configuration
 Using dimensionality (3D) from ConfigManager
 Using 3D convolutions (nn.Conv3d)
