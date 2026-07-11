@@ -187,7 +187,8 @@ Rebuild recipe for the band: HTTP range-request rows 1145-1344 of
 The Stage 3 native-config numbers (63.2/56.3% wrong-hop) measured the tool
 **as released**. A later cross-project pass found the dominant cause of that
 benchmark miss: the
-checkpoint is trained on 4.8 um voxels, the volume is 7.91 um, and the
+checkpoint is reported as trained on 4.8 um voxels (provenance boundary in
+docs/UPSTREAM_UNIT_AUDIT.md), the volume is 7.91 um, and the
 released CLI applies displacement outputs directly in input-volume voxels —
 no unit conversion exists anywhere in `vesuvius/neural_tracing` (verified on
 the exact `vesuvius==0.2.4` wheel: `world + slot_*_disp` with only a

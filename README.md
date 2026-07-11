@@ -116,7 +116,7 @@ winding_audit_v4.py          the headline audit: band construction, self-tests,
                               KD-tree wrap assignment, hop-correct metric
 benchmark_core.py           shared KD-tree / scoring utilities
 resolution_calibration.py   resolution-calibration evidence: control, rescore,
-                              plateau, wrong-side + null + dumb-baseline controls
+                              plateau, wrong-side + permutation + normal-step diagnostics
 threshold_sweep.py           fixed-distance and gap-fraction threshold sweeps
 make_ct_panels.py            CT cutaway panel generator for representative cells
 gap_verify.py                independent CT-intensity cross-check of wrap spacing

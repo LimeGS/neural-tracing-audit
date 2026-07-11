@@ -144,7 +144,7 @@ are real compression rather than a segmentation-only artifact.
 | Native crop + TTA | same checkpoint, sha256 in `docs/NT_AUDIT.md` | 7.91 um zarr, level 0 | 128 x 384 x 384 | mirror, 8 flips | RTX 3090 | `gate_3090/out_native/` |
 
 The checkpoint was public and non-gated on HuggingFace, 1.58 GiB, updated
-2026-07-01. The released model is trained at 4.8 um; both runs here use the
+2026-07-01. The released model is reported as trained at 4.8 um; both runs here use the
 available 7.91 um chunk-addressable zarr, so native-resolution performance
 is still an open test.
 

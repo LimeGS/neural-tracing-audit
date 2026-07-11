@@ -1,6 +1,7 @@
 """Resolution-calibration finding (2026-07-11): evidence generator.
 
-The released checkpoint was trained on 4.8 um voxels; the public PHerc0332
+The released checkpoint is reported as trained on 4.8 um voxels (see
+docs/UPSTREAM_UNIT_AUDIT.md for the provenance boundary); the public PHerc0332
 volume used for this benchmark is 7.91 um. The released CLI
 (vesuvius==0.2.4, infer_rowcol_triplet_wraps) applies the model's
 displacement output directly in input-volume voxels: no unit conversion
