@@ -1,0 +1,111 @@
+{
+    "scale": [
+        1.0,
+        1.0
+    ],
+    "bbox": [
+        [
+            1631.1114501953125,
+            2480.67333984375,
+            7038.76220703125
+        ],
+        [
+            2856.327880859375,
+            3442.168212890625,
+            7392.59228515625
+        ]
+    ],
+    "area_vx2": 39601,
+    "area_cm2": 0.026888128576,
+    "format": "tifxyz",
+    "type": "seg",
+    "uuid": "seed_segment_back",
+    "source": "/private/tmp/claude-501/-Users-user-Documents-Software-nosync-Factory-vesubius-challenge/b61704ed-0cac-4e5f-ac6c-c40e6b2d3544/scratchpad/ckpt/copy_displacement_latest.pth",
+    "checkpoint_path": "/private/tmp/claude-501/-Users-user-Documents-Software-nosync-Factory-vesubius-challenge/b61704ed-0cac-4e5f-ac6c-c40e6b2d3544/scratchpad/ckpt/copy_displacement_latest.pth",
+    "crop_size": [
+        128,
+        128,
+        128
+    ],
+    "bbox_count": 4,
+    "bbox_overlap": 0.0,
+    "bbox_prune": true,
+    "bbox_band_workers": 1,
+    "crop_input_workers": 1,
+    "triplet_output_channels": 6,
+    "retarget_factor": 1.0,
+    "tta_transform_effective": "mirror",
+    "tta_merge_method_effective": "vector_geomedian",
+    "n_pred_back_cells": 39538,
+    "n_pred_front_cells": 39538,
+    "orientation_mode": "global_direction_prior_fixed",
+    "orientation_global_normals_points": 40000,
+    "orientation_global_normal_zyx": [
+        0.07590683549642563,
+        -0.615363359451294,
+        0.7845801711082458
+    ],
+    "triplet_direction_prior_mask_effective": "cond",
+    "triplet_slot_to_output": {
+        "A": "front",
+        "B": "back"
+    },
+    "save_coordinate_scale_factor": 1,
+    "stored_scale_rc": [
+        1.0,
+        1.0
+    ],
+    "effective_step_size_used": 1,
+    "projection_dense_interp_method": "catmull_rom",
+    "projection_dense_uv_mode": "per_bbox",
+    "projection_dense_neighborhood": 11,
+    "projection_dense_reject_outlier_fraction": 0.25,
+    "projection_dense_reject_min_keep": 4,
+    "projection_dense_scale_factor": 1,
+    "front_projection": {
+        "mode": "lattice_bilinear_torch",
+        "stride_rc": [
+            1,
+            1
+        ],
+        "phase_rc": [
+            0,
+            0
+        ],
+        "n_full_valid": 39520,
+        "n_anchor_sampled": 39538,
+        "n_fallback_tried": 462,
+        "n_fallback_recovered": 0,
+        "n_stored_valid": 39538
+    },
+    "back_projection": {
+        "mode": "lattice_bilinear_torch",
+        "stride_rc": [
+            1,
+            1
+        ],
+        "phase_rc": [
+            0,
+            0
+        ],
+        "n_full_valid": 39520,
+        "n_anchor_sampled": 39538,
+        "n_fallback_tried": 462,
+        "n_fallback_recovered": 0,
+        "n_stored_valid": 39538
+    },
+    "iteration_index": 1,
+    "iterations_requested": 1,
+    "iter_direction": null,
+    "keep_previous_wrap": true,
+    "iterative_mode": false,
+    "run_argv": [
+        "mps"
+    ],
+    "surface_role": "back",
+    "mesh_cleanup_enabled": false,
+    "mesh_cleanup_target_step": 1.0,
+    "mesh_cleanup_duplicate_vertices_fixed": 0,
+    "mesh_cleanup_unique_edges": 0,
+    "mesh_cleanup_relaxation_applied": false
+}

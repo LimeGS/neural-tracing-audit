@@ -1,0 +1,5 @@
+__pycache__/
+*.pyc
+.pytest_cache/
+.DS_Store
+band_r1145_200_xyz.npz

@@ -1,0 +1,20 @@
+loaded band: xyz (200, 25706, 3), valid (200, 25706), row0=1145
+nt_front (200, 200, 3), nt_back (200, 200, 3)
+class populations: {-3: 0, -2: 114509, -1: 1654338, 0: 1675193, 1: 1631237, 2: 0, 3: 0}
+classes with trees: [-2, -1, 0, 1]
+seed cells with class 0: 10000 / 10000 | other classes present: []
+SELF-TEST: seed->class0 dist: median 0.000, max 0.000 vox (must be ~0)
+
+[NT-native front] n=10000 included=4697 excluded=5303 (edge-coverage=5303)
+  HOP-CORRECT 1730/4697 = 36.8%  |  WRONG-HOP 63.2% (wrong wrap 0.0%, right wrap >half-gap 63.2%)
+  3D dist to expected wrap: median 7.7 vox (61 um), p90 12.4 vox (98 um)
+  local gap (seed->wrap): median 11.2 vox (88 um), p10 8.4, p90 14.4
+  nearest-class histogram: {1: 4697}
+
+[NT-native back] n=10000 included=8697 excluded=1303 (edge-coverage=1303)
+  HOP-CORRECT 3802/8697 = 43.7%  |  WRONG-HOP 56.3% (wrong wrap 0.0%, right wrap >half-gap 56.3%)
+  3D dist to expected wrap: median 5.2 vox (41 um), p90 7.7 vox (61 um)
+  local gap (seed->wrap): median 8.8 vox (70 um), p10 6.6, p90 11.5
+  nearest-class histogram: {-1: 8697}
+
+saved winding_failure_map_native.png (left=front, right=back; green=hop-correct, red=wrong wrap, orange=right wrap >half-gap, gray=excluded)
