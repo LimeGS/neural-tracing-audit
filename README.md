@@ -108,6 +108,8 @@ docs/NT_AUDIT.md            full technical account (all stages, all numbers)
 docs/BENCHMARK.md           reproducible benchmark spec/checklist for other methods
 docs/CHECKSUMS.txt          SHA-256 checksums for the reference/seed files
 docs/UPSTREAM_UNIT_AUDIT.md exact wheel/current-main training + inference unit audit
+docs/BENCHMARK_V2_SPEC.md  pre-registered v2 spec (curvature strata, fixed pitch
+                              estimator, chained hops) — DRAFT, frozen before any v2 run
 docs/evidence/              saved evidence logs (incl. resolution calibration)
 band_r1145_200_xyz.npz      200-row local multi-wrap reference band — NOT in git
                             (48 MB, gitignored); regenerate bit-exactly with
