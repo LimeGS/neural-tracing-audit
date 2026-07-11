@@ -121,6 +121,8 @@ resolution_calibration.py   resolution-calibration evidence: control, rescore,
                               plateau, wrong-side + permutation + normal-step diagnostics
 threshold_sweep.py           fixed-distance and gap-fraction threshold sweeps
 make_ct_panels.py            CT cutaway panel generator for representative cells
+make_post_panel.py           illustration panel: one typical unit-mismatch miss
+                              with the calibrated prediction overlaid
 gap_verify.py                independent CT-intensity cross-check of wrap spacing
 sanity_check.py              output validity checks (finite, shape, plausibility)
 run_inference.py             driver for the reduced-spec run (Mac, 128^3, no TTA)
