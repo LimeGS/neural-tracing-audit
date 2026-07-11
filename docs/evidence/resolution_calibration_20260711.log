@@ -2,15 +2,28 @@ factor = 4.8/7.91 = 0.6068
 
 [front] 1. CONTROL unscaled   : correct 36.83% wrong-hop 63.17% (incl 4697)   <- must equal the published row
 [front] 2. scaled by 4.8/7.91 : correct 94.15% wrong-hop 5.85% (incl 4731)
-[front] 3. plateau            : 0.500:95.7%  0.550:96.4%  0.607:94.1%  0.650:89.6%  0.700:82.0%
+[front] 2b. original denominator: correct 94.10% wrong-hop 5.90% (incl 4697)
+[front] 3. plateau            : 0.500:95.6%  0.550:96.4%  0.607:94.1%  0.650:89.6%  0.700:81.9%
 [front] 4a. wrong-side control: correct 0.00%  (must be ~0)
-[front] 4b. permuted-dir null : correct 93.22% at |d|=13.0  <- saturation caveat
-[front] 4c. dumb normal-step  : best correct 95.77% (|d|=9, sign -1)  <- what the model must beat
+[front] 4b. within-window direction permutation: correct 93.22% at |d|=13.0  <- low-curvature saturation
+[front] 4c. reference-pitch normal step: correct 95.77% (|d|=9, sign -1)  <- post-hoc diagnostic
+[front] 5. miss rate by local gap on original denominator:
+  gap [0,7) vox: 54/60 = 90.00%
+  gap [7,9) vox: 154/693 = 22.22%
+  gap [9,12) vox: 69/2126 = 3.25%
+  gap [12,16) vox: 0/1563 = 0.00%
+  gap [16,inf) vox: 0/255 = 0.00%
 
 [back] 1. CONTROL unscaled   : correct 43.72% wrong-hop 56.28% (incl 8697)   <- must equal the published row
 [back] 2. scaled by 4.8/7.91 : correct 92.29% wrong-hop 7.71% (incl 8712)
-[back] 3. plateau            : 0.500:90.8%  0.550:92.7%  0.607:92.3%  0.650:91.7%  0.700:87.6%
+[back] 2b. original denominator: correct 92.27% wrong-hop 7.73% (incl 8697)
+[back] 3. plateau            : 0.500:90.8%  0.550:92.7%  0.607:92.3%  0.650:91.6%  0.700:87.6%
 [back] 4a. wrong-side control: correct 0.00%  (must be ~0)
-[back] 4b. permuted-dir null : correct 97.19% at |d|=8.8  <- saturation caveat
-[back] 4c. dumb normal-step  : best correct 95.21% (|d|=9, sign +1)  <- what the model must beat
-
+[back] 4b. within-window direction permutation: correct 97.19% at |d|=8.8  <- low-curvature saturation
+[back] 4c. reference-pitch normal step: correct 95.21% (|d|=9, sign +1)  <- post-hoc diagnostic
+[back] 5. miss rate by local gap on original denominator:
+  gap [0,7) vox: 299/1555 = 19.23%
+  gap [7,9) vox: 2/3168 = 0.06%
+  gap [9,12) vox: 123/3296 = 3.73%
+  gap [12,16) vox: 80/465 = 17.20%
+  gap [16,inf) vox: 168/213 = 78.87%

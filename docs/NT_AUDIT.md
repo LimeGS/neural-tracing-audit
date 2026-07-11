@@ -68,8 +68,10 @@ n = 10,000 cells (every 2nd grid point):
 | Corrected winding field, same segment | 7,061 / 29,475 = 23.956% transition mismatch | segment-wide; different metric |
 
 Distances to the correct wrap: NT front median 27.4 vox (216 µm), back
-24.3 vox (192 µm) — vs local gaps of ~9-11 vox. Baseline A: 48.3/58.5 vox
-(NT is ~2× closer than the null → real signal, wrong magnitude).
+24.3 vox (192 µm) — vs local gaps of ~9-11 vox. Baseline A: 48.3/58.5 vox.
+Stage 4 later showed that this uncalibrated baseline is useful only as a
+gross-magnitude rejection: it does not establish learned directional skill
+or a model-versus-geometry advantage.
 
 **Failure mode:** NT predicts hops of median 34-41 vox along the normal
 (~330-500 µm — the *canonical* wrap spacing) regardless of the actual local
@@ -183,30 +185,41 @@ Rebuild recipe for the band: HTTP range-request rows 1145-1344 of
 ## Stage 4 — Resolution-calibration finding (2026-07-11)
 
 The Stage 3 native-config numbers (63.2/56.3% wrong-hop) measured the tool
-**as released**. A later cross-project pass found their dominant cause: the
+**as released**. A later cross-project pass found the dominant cause of that
+benchmark miss: the
 checkpoint is trained on 4.8 um voxels, the volume is 7.91 um, and the
 released CLI applies displacement outputs directly in input-volume voxels —
 no unit conversion exists anywhere in `vesuvius/neural_tracing` (verified on
-the exact `vesuvius==0.2.4` wheel: `verts += disp` with only a
+the exact `vesuvius==0.2.4` wheel: `world + slot_*_disp` with only a
 max-displacement clamp; `--volume-scale` = zarr pyramid level;
 `--tifxyz-voxel-size-um` = output metadata only), and no resolution
-requirement is documented. Training losses define targets as voxel
-displacements of 4.8 um data, so at 7.91 um every hop is inflated 1.65x.
+requirement is documented. The dataloader constructs target vectors from
+nearest-surface indices in the crop grid and the loss compares them without
+a physical-spacing term. Given the checkpoint's reported 4.8 um training
+pitch, the vector's physical interpretation on 7.91 um voxels is 1.65x
+larger. See `docs/UPSTREAM_UNIT_AUDIT.md`, including the fact that 4.8 um is
+upstream provenance rather than self-describing checkpoint metadata.
 
 Multiplying displacements by 4.8/7.91 = 0.607 (nothing else):
 front 63.17% -> **5.85%** wrong-hop, back 56.28% -> **7.71%** (back gains
 4.0% wrong-wrap, previously 0). Controls: unscaled rerun reproduces the
-published rows exactly; plateau 0.50-0.65 (not a fitted point); wrong-side
+published rows exactly; broad plateau 0.50-0.65 (89.6-96.4% correct, not a
+fitted point); wrong-side
 scoring of calibrated predictions fails 100%.
 
 **Saturation caveat:** at corrected magnitudes this window stops
-discriminating direction quality — a permuted-direction null scores 93-97%
-and a no-network normal-step baseline (9 vox) scores 95.8/95.2%, matching
-the calibrated model (94.1/92.3%). This window certifies the unit mismatch
-and its fix, not directional skill beyond dumb geometry; that requires
-multi-hop chaining / curvature / variable-gap terrain.
+discriminating a learned direction field from a coherent local normal. A
+within-window direction permutation scores 93-97%, and a 9-voxel
+normal-step diagnostic scores 95.8/95.2%, matching the calibrated model
+(94.1/92.3%). The 9-voxel magnitude was selected after inspecting this
+reference band's gaps, so it is explicitly post-hoc, not a deployable or
+pre-registered baseline. This window certifies the unit mismatch and its
+fix, not learned directional skill; that requires multi-hop chaining,
+curvature, and a pitch rule frozen before evaluation.
 
 Evidence: `resolution_calibration.py` +
-`docs/evidence/resolution_calibration_20260711.log`. The remaining
-calibrated misses concentrate where the local gap swings ~6->19 vox, i.e.
-the residual sub-problem is local pitch estimation.
+`docs/evidence/resolution_calibration_20260711.log`. The same evidence now
+reports misses by gap bin: front is worst below 7 vox, while back is worst
+above 16 vox; both are near-zero in their central pitch bands. This supports
+local pitch estimation as the residual sub-problem without implying that a
+deployable estimator has already been demonstrated.

@@ -165,7 +165,8 @@ Direction correctness:
 - Reduced-spec run: front/back split is 94% / 94% across the surface normal
   (`run_mps.log`), but the distance is usually too large.
 - Discrimination control: scoring the front prediction against the wrong
-  side fails 99.1%, so the metric distinguishes direction.
+  side fails 99.1%, so the metric distinguishes side/sign. It does not by
+  itself establish precise learned direction within the correct half-space.
 
 Overshoot:
 
@@ -195,11 +196,28 @@ Metric development history:
 Null / controls:
 
 - Constant median-offset baseline along normals: 100% wrong-hop in both
-  directions, at about 2x the network's distance.
+  directions, at about 2x the network's distance. This historical control
+  rejects a grossly wrong magnitude; it is not evidence that the network
+  outperforms local geometry.
 - Wrong-side scoring control: front scored against back expectation fails
   99.1%.
 - CT intensity spacing check: median 13.0 vox = 103 um, independently
   matching the compressed local geometry.
+
+Resolution-calibrated diagnostic (added after the pre-registered run):
+
+- Scaling the same predictions by `4.8/7.91` gives 5.90% front and 7.73%
+  back wrong-hop on the original scorable denominators. The exact training
+  and inference unit chain is documented in `UPSTREAM_UNIT_AUDIT.md`.
+- A within-window direction permutation remains 93-97% correct, and a
+  post-hoc 9-voxel normal step reaches 95.8/95.2%. These are saturation
+  diagnostics: this low-curvature window certifies the magnitude correction,
+  but cannot rank learned direction against a coherent local normal.
+- Residual miss rates vary sharply with local gap, but not monotonically on
+  both sides. That supports testing a pre-specified local-pitch estimator;
+  it does not yet establish pitch variation as the sole residual cause.
+- Scorability requires recorded neighboring geometry. This likely favors
+  easier regions, so the calibrated row may be optimistic for general tracing.
 
 ## 9. Visual examples
 
