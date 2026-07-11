@@ -177,3 +177,36 @@ CT cutaway generator), `gap_verify.py` (CT volume-truth check),
 Rebuild recipe for the band: HTTP range-request rows 1145-1344 of
 `.../Scroll3/PHerc332.volpkg/paths/20240618142020/20240618142020.ppm`
 (header 74 bytes, row-major float64 x,y,z,nx,ny,nz, width 25706).
+
+---
+
+## Stage 4 — Resolution-calibration finding (2026-07-11)
+
+The Stage 3 native-config numbers (63.2/56.3% wrong-hop) measured the tool
+**as released**. A later cross-project pass found their dominant cause: the
+checkpoint is trained on 4.8 um voxels, the volume is 7.91 um, and the
+released CLI applies displacement outputs directly in input-volume voxels —
+no unit conversion exists anywhere in `vesuvius/neural_tracing` (verified on
+the exact `vesuvius==0.2.4` wheel: `verts += disp` with only a
+max-displacement clamp; `--volume-scale` = zarr pyramid level;
+`--tifxyz-voxel-size-um` = output metadata only), and no resolution
+requirement is documented. Training losses define targets as voxel
+displacements of 4.8 um data, so at 7.91 um every hop is inflated 1.65x.
+
+Multiplying displacements by 4.8/7.91 = 0.607 (nothing else):
+front 63.17% -> **5.85%** wrong-hop, back 56.28% -> **7.71%** (back gains
+4.0% wrong-wrap, previously 0). Controls: unscaled rerun reproduces the
+published rows exactly; plateau 0.50-0.65 (not a fitted point); wrong-side
+scoring of calibrated predictions fails 100%.
+
+**Saturation caveat:** at corrected magnitudes this window stops
+discriminating direction quality — a permuted-direction null scores 93-97%
+and a no-network normal-step baseline (9 vox) scores 95.8/95.2%, matching
+the calibrated model (94.1/92.3%). This window certifies the unit mismatch
+and its fix, not directional skill beyond dumb geometry; that requires
+multi-hop chaining / curvature / variable-gap terrain.
+
+Evidence: `resolution_calibration.py` +
+`docs/evidence/resolution_calibration_20260711.log`. The remaining
+calibrated misses concentrate where the local gap swings ~6->19 vox, i.e.
+the residual sub-problem is local pitch estimation.
