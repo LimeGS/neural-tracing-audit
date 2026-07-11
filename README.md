@@ -9,6 +9,10 @@ adjacent wrap. We benchmarked it, quantitatively, in one of the hardest
 regions we could find, using a local multi-wrap reference derived from the
 same public segmentation.
 
+> Companion write-up covering both this benchmark and the related
+> winding-assignment result:
+> https://github.com/LimeGS/winding-field/blob/main/WRITEUP.md
+
 This repo is the harness, data, and current numbers. It is meant as a
 community stress test for compressed-wrap failure modes, not as a claim
 that neural tracing or winding methods are exhausted. The point is to make
