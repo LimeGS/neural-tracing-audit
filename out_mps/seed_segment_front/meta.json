@@ -20,8 +20,8 @@
     "format": "tifxyz",
     "type": "seg",
     "uuid": "seed_segment_front",
-    "source": "/private/tmp/claude-501/-Users-user-Documents-Software-nosync-Factory-vesubius-challenge/b61704ed-0cac-4e5f-ac6c-c40e6b2d3544/scratchpad/ckpt/copy_displacement_latest.pth",
-    "checkpoint_path": "/private/tmp/claude-501/-Users-user-Documents-Software-nosync-Factory-vesubius-challenge/b61704ed-0cac-4e5f-ac6c-c40e6b2d3544/scratchpad/ckpt/copy_displacement_latest.pth",
+    "source": "$WORK/ckpt/copy_displacement_latest.pth",
+    "checkpoint_path": "$WORK/ckpt/copy_displacement_latest.pth",
     "crop_size": [
         128,
         128,
